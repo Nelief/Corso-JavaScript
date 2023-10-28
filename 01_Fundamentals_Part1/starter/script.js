@@ -9,27 +9,29 @@ console.log(firstName + " " + lastName);
  */
 
 //Datatypes
-
-/* let pi = 3.14; //numero
+/* 
+let pi = 3.14; //numero
 let firstName = "mauro" //string
 let condition = true //boolean
-
-console.log(typeof condition); */
+console.log(typeof condition); 
+*/
 
 //una variabile non inizializzata ha
 //valore "undefined" e tipo "undefined"
 //stessa cosa per null (typeoff ritorna "object" in questo caso)
-/* let test;
+/* 
+let test;
 console.log(test);
-console.log(typeof test); */
+console.log(typeof test); 
+*/
 
 
 //Dichiarare variabili
-/* let variabile = "test";
+/* 
+let variabile = "test";
 variabile = "nuovoTest";
 const COSTANTE = "constTest"; // se provi a cambiarlo da un errore di tipo, const deve essere inizializzata per forza
-
- */
+*/
 
 /* const now = 2023;
 const ageMauro = now - 1997;
@@ -105,4 +107,13 @@ console.log(Number(inputYear)+20);
 console.log('19'==19);
 console.log('19'===19);
 */
+
+//ternary conditional operator
+//shorthand di if/else, permette di fare un operazione condizionale velocemente
+//inoltre un ternary è un espressione (produce un valore) quindi può andare in un template
+/* 
+const age = 26; 
+const drink = age >= 18 ? 'wine' : 'water';
+console.log(drink);
+ */
 

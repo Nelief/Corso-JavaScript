@@ -35,22 +35,21 @@ rollSecretNumber();
 */
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
-  const message = document.querySelector('.message');
 
   if (!guess) {
-    message.textContent = 'No number!';
+    displayMessage('No number!');
   } else {
     if (score > 1) {
       if (guess === secretNumber) {
-        message.textContent = 'Correct!';
+        displayMessage('Correct!');
         setHighScore();
         win();
       } else {
-        message.textContent = guess < secretNumber ? 'to low!' : 'to high!';
+        displayMessage(guess < secretNumber ? 'to low!' : 'to high!');
         losePoint();
       }
     } else {
-      message.textContent = 'You lost the game!';
+      displayMessage('You lost the game!');
     }
   }
 });
@@ -65,6 +64,10 @@ const setHighScore = function () {
     highscore = score;
     document.querySelector('.highscore').textContent = score;
   }
+};
+
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
 };
 
 /* Style Manipulation */
@@ -84,9 +87,9 @@ document.querySelector('.again').addEventListener('click', function () {
 const resetUI = function () {
   document.querySelector('body').style.backgroundColor = '#222';
   document.querySelector('.number').style.width = '15rem';
-  document.querySelector('.message').textContent = 'Start guessing...';
   document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
+  displayMessage('Start guessing...');
 };
 
 const resetScore = function () {

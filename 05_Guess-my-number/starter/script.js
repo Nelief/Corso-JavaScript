@@ -34,8 +34,7 @@ rollSecretNumber();
         5. game logic (verifico se è uguale,minore o maggiore del numero segreto)
 */
 document.querySelector('.check').addEventListener('click', function () {
-  const guess = Number(document.querySelector('.guess').value);
-
+  const guess = getGuessNumber();
   if (!guess) {
     displayMessage('No number!');
   } else {
@@ -68,6 +67,10 @@ const setHighScore = function () {
 
 const displayMessage = function (message) {
   document.querySelector('.message').textContent = message;
+};
+
+const getGuessNumber = function () {
+  return Number(document.querySelector('.guess').value);
 };
 
 /* Style Manipulation */

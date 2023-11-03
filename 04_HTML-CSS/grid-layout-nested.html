@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .wrapper > div {
+        background-color: #d4d4d4;
+        padding: 1em;
+      }
+
+      .wrapper > div:nth-child(odd) {
+        background-color: #575757;
+      }
+
+      .wrapper {
+        display: grid;
+        /* grid-template-columns: 1fr 1fr 1fr;
+        /* 1fr = 1 frazione, divide equamente tra le frazioni in una riga */
+        /* repeat + fr permette di dire numero di colonne e larghezza delle colonne, è possibile specificare pattern ie. repeat(3,1fr 2fr) */
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1em;
+
+        /* determina la altezza delle righe nella grid */
+        /*grid-auto-rows: 100px; */
+        /*minmax(px,auto) permette di adattare la dimensione del box nella grid in base al testo nel caso in cui questo non entri, cosi facendo 100px diventa un "minimo" di larghezza, altrimenti il box si adatta al testo*/
+        grid-auto-rows: minmax(100px, auto);
+      }
+
+      .nested {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 70px;
+        gap: 1em;
+      }
+
+      .nested > div {
+        border: #333 1px solid;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="nested">
+        <div>Lorem</div>
+        <div>Lorem</div>
+        <div>Lorem</div>
+      </div>
+      <div>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex consectetur
+        minus, iure accusantium amet reiciendis molestiae veniam distinctio
+        repellendus a earum voluptatibus maxime nisi, itaque, alias harum ipsum
+        est? Architecto at cupiditate qui. Vero, recusandae? Iure architecto
+        ullam quaerat fuga autem optio ab? Totam eveniet iure incidunt
+        cupiditate porro consequuntur inventore ratione minima aperiam,
+        doloremque aspernatur ipsa eaque blanditiis fugit quasi vitae eum
+        laborum velit! Vitae reiciendis minima laborum ad ducimus quam
+        architecto veniam recusandae in ea nam quaerat reprehenderit, explicabo
+        asperiores nemo voluptate iste tempora alias labore obcaecati nostrum
+        debitis? Facere tempora sed perferendis numquam deleniti a pariatur
+        voluptate.
+      </div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+      <div>Lorem ipsum dolor sit.</div>
+    </div>
+  </body>
+</html>

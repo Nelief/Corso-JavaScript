@@ -19,6 +19,7 @@ NOTA: il DOM non è parte di Javascript, Java script usa il DOM per manipolare l
 */
 let secretNumber;
 let score = 20;
+let highscore = 0;
 
 const rollSecretNumber = function () {
   secretNumber = Math.trunc(Math.random() * 20) + 1;
@@ -38,20 +39,19 @@ document.querySelector('.check').addEventListener('click', function () {
 
   if (!guess) {
     message.textContent = 'No number!';
-  } else if (score > 1) {
-    if (guess === secretNumber) {
-      message.textContent = 'Correct!';
-      setHighScore();
-      win();
-    } else if (guess < secretNumber) {
-      message.textContent = 'to low!';
-      losePoint();
-    } else if (guess > secretNumber) {
-      message.textContent = 'to high!';
-      losePoint();
-    }
   } else {
-    message.textContent = 'You lost the game!';
+    if (score > 1) {
+      if (guess === secretNumber) {
+        message.textContent = 'Correct!';
+        setHighScore();
+        win();
+      } else {
+        message.textContent = guess < secretNumber ? 'to low!' : 'to high!';
+        losePoint();
+      }
+    } else {
+      message.textContent = 'You lost the game!';
+    }
   }
 });
 
@@ -61,8 +61,8 @@ const losePoint = function () {
 };
 
 const setHighScore = function () {
-  const highscore = Number(document.querySelector('.highscore').textContent);
   if (score > highscore) {
+    highscore = score;
     document.querySelector('.highscore').textContent = score;
   }
 };

@@ -223,4 +223,248 @@ const ingredients = ['Peperoni', 'Salami', 'Potatoes'];
 restaurant.orderPizza(...ingredients);
  */
 
-//LEZIONE 9.6
+/* 
+//LEZIONE 9.5 : For Each loops
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+//for x of y: x itera in y e ritorna un oggetto di y ad ogni giro del ciclo.
+for (const item of menu) console.log(item);
+
+//for x in y: x itera in y e ritorna l' index di ogni elemento
+for (const index in menu) console.log(index);
+
+//for x of y.entries() ritorna [index,oggetto], possiamo splittare le due tramite destructoring
+for (const [index, item] of menu.entries())
+  console.log(`${index + 1}: ${item}`);
+ */
+/* 
+//LEZIONE 9.6 : Enhanced Objects Literals
+//metodi avanzati per creare oggetti
+
+//oggetti composti
+const indirizzo = {
+  via: 'della rotonda',
+  civico: '10',
+};
+
+const persona = {
+  nome: 'mauro',
+  cognome: 'malafronte',
+  indirizzo,
+  annoDiNascita: 1997,
+
+  //metodi senza ":function"
+  calcolaEta(annoAttuale) {
+    return annoAttuale - this.annoDiNascita;
+  },
+};
+
+console.log(persona);
+ */
+/* 
+//LEZIONE 9.7: optional chaining
+//check condizionale di una proprietà in un oggetto: nell' esempio prima di provare ad eseguire mon.open, viene controllato che openinghours.mon esista. Se questo non è presente viene ritornato undefined in maniera safe
+console.log(restaurant.openingHours.mon?.open);
+
+//il principale usecase è quello di creare delle assegnazioni a partire da elementi di cui non è sicura l' esistenza con ?. ed usare ?? come fallback nel caso questi non esistano.
+// const x = obj.something?.someAttribute ?? fallback
+
+//USE case: lista condizionale
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(
+    `On ${day}, ${
+      restaurant.openingHours[day] ? `we open at ${open}` : `we are ${open}`
+    }`
+  );
+}
+
+//USECASE: check per array vuoto
+const users = [{ name: 'mauro', email: 'mauro@gmail.com' }];
+const users2 = [];
+console.log(users2[0]?.name ?? 'Empty Array');
+ */
+/* 
+//LEZIONE 9.8 : Object looping
+//looping over keys (Property Names)
+for (const day of Object.keys(restaurant.openingHours)) console.log(day);
+
+for (const day of Object.values(restaurant.openingHours)) console.log(day);
+
+for (const [day, hours] of Object.entries(restaurant.openingHours))
+  console.log(day, hours.open, hours.close);
+ */
+
+/* 
+//LEZIONE 9.8 : SET
+//Struttura dati pensata per mantenere una lista di eventi/oggetti unici non ordinati.
+//set taglia tutti i duplicati
+const ordersSet = new Set(['pasta', 'pizza', 'risotto', 'pizza']);
+console.log(ordersSet);
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('pizza'));
+
+ordersSet.add('garlic bread');
+ordersSet.add('garlic bread');
+console.log(ordersSet);
+
+ordersSet.delete('pizza');
+console.log(ordersSet);
+
+for (const order of ordersSet) {
+  console.log(order);
+}
+
+//USECASE: clean duplicates from an array
+const staffList = ['waiter', 'cheff', 'manager', 'waiter', 'waiter', 'cheff'];
+
+const roleList = [...new Set(staffList)];
+console.log(roleList);
+*/
+/* 
+//LEZIONE 9.9: MAPS
+//DS che mantiene gli oggetti in coppie key:value similmente agli oggetti, ma con maggiore flessibilità e utilities
+
+const person = new Map();
+person.set('firstName', 'Mauro').set('lastName', 'Malafronte');
+
+console.log(person.get('firstName'));
+console.log(person.has('lastName'));
+console.log(person.delete('lastName'));
+console.log(person.size);
+person.clear();
+
+//USECASE: question map
+const question = new Map([
+  ['question text', 'text'],
+  [1, 'option1'],
+  [2, 'option2'],
+  [3, 'option3'],
+  ['correct', 3],
+  [true, 'Corret'],
+  [false, 'Try Again!'],
+]);
+
+//Map Iteration
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  if (typeof key === 'number') console.log(`Answear ${key} : ${value}`);
+}
+const answer = Number(prompt('Your Answer'));
+console.log(question.get(answer === question.get('correct')));
+
+//Object entries to map
+const hours = new Map(Object.entries(restaurant.openingHours));
+console.log(hours);
+
+//map to array
+const arrayMap = [...question];
+console.log(arrayMap);
+*/
+/* 
+//Esercitaziones
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  Players: [
+    [
+      'neuer',
+      'pavard',
+      'martinez',
+      'alaba',
+      'davies',
+      'kimmich',
+      'goretzka',
+      'coman',
+      'muller',
+      'gnarby',
+      'lewandowski',
+    ],
+    [
+      'burki',
+      'schulz',
+      'hummels',
+      'akanji',
+      'hakimi',
+      'weigl',
+      'witsel',
+      'hazard',
+      'brandt',
+      'sancho',
+      'gotza',
+    ],
+  ],
+  score: '4:0',
+  scored: ['lewandowski', 'gnarby', 'lewandowski', 'hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.25,
+  },
+};
+
+const [players1, players2] = game.Players;
+console.log(players1, players2);
+
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
+
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+const players1Final = [...players1, 'a', 'b', 'c'];
+console.log(players1Final);
+
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
+
+const printGoals = function (...players) {
+  console.log(`${players.length} goals were scored!`);
+};
+
+printGoals('lewandowski', 'gnarby', 'lewandowski', 'hummels');
+
+team1 < team2 && console.log('Team1 is more likely to win');
+team1 > team2 && console.log('Team2 is more likely to win'); 
+
+
+console.log('----------------------------------------');
+
+for (const player of game.scored) console.log(player);
+
+function calculateAverageOdd(odds) {
+  let sum = 0;
+  let i = 0;
+  for (const odd of Object.values(odds)) {
+    sum += odd;
+    i++;
+  }
+  return sum / i;
+}
+
+console.log(calculateAverageOdd(game.odds));
+
+function prettyPrint(odds) {
+  for (const [team, odd] of Object.entries(odds)) {
+    const teamStr = team === 'x' ? 'draw' : `Victory ${game[team]}`;
+    console.log(`Odds of ${teamStr}: ${odd}`);
+  }
+}
+
+prettyPrint(game.odds);
+
+function listScorers(game) {
+  const scorers = {};
+  for (const goal of Object.values(game.scored)) {
+    scorers[goal] ? (scorers[goal] += 1) : (scorers[goal] = 1);
+  }
+  return scorers;
+}
+
+console.log(listScorers(game));
+ */
